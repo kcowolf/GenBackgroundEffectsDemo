@@ -1,0 +1,15 @@
+*.VC.opendb
+*.VC.db
+*.log
+*.obj
+*.tlog
+*.suo
+*.iobj
+*.ipdb
+*.pdb
+*.o
+*.out
+*.layout
+out.lst
+out/*
+.vscode/**

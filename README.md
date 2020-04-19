@@ -42,7 +42,7 @@ The [Sine function](https://en.wikipedia.org/wiki/Sine) is periodic; its results
 ## Optimization
 The three multiplications in the original formula make it too slow to run on the Genesis.  Over time I optimized the formula in four stages, as follows:
 1. ```S * t``` does not change while the frame is being drawn, so it can be calculated once before we start the 224-line loop.
-2. Since y decreases 1 on each line, the value of ```F * y``` differs from one line to the next by -F.  We can calculate a **sine_table_idx** for line 223, ```F * 223 + S * t```, and for each subsequent line, we decrease this value by **F**.
+2. Since y decreases by 1 on each line, the value of ```F * y``` differs from one line to the next by -F.  We can calculate a **sine_table_idx** for line 223, ```F * 223 + S * t```, and for each subsequent line, we decrease this value by **F**.
 3. Following similar thinking to #2: Since t increases by 1 for each frame, for the first line of each frame (line 223), the value of sine_table_idx differs by +S.  We can calculate an **initial_sine_table_idx** before the first frame, ```F * 223 + S * 0``` and for each subsequent frame, we increase this initial value by **S**.  We then set sine_table_idx to this value at the start of each frame.
 4. By only using amplitudes which are powers of 2, we can use bit-shifting instead of multiplication.  The amplitude values stored in the code are the exponents of 2.  Technically, left-shifting a negative int is undefined behavior, but the way GCC handles it appears to work.
 

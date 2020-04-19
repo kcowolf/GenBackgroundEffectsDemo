@@ -5,7 +5,7 @@ Recreation of battle background effects from the game EarthBound on the Sega Gen
 Press up or down on the controller to cycle through different effects.
 
 # About This Demo
-I started this demo trying to figure out if the effects described in [Retro Game Mechanics Explained](https://www.youtube.com/channel/UCwRqWnW5ZkVaP_lZF7caZ-g)'s video on the [battle backgrounds in the game Earthbound](https://www.youtube.com/watch?v=zjQik7uwLIQ).  My goal was to recreate these effects on the Sega Genesis.
+I started this demo trying to figure out if the effects described in [Retro Game Mechanics Explained](https://www.youtube.com/channel/UCwRqWnW5ZkVaP_lZF7caZ-g)'s video on the [battle backgrounds in the game Earthbound](https://www.youtube.com/watch?v=zjQik7uwLIQ) could be recreated on the Sega Genesis.
 ## Effects
 The effects described in the EarthBound video are:
 1. Palette Cycling

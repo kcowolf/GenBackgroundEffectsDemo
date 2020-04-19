@@ -25,7 +25,7 @@ For the three oscillation effects, the demo calculates 224 offset values per fra
 For Vertical Oscillation, horizontal interrupts are used to change the plane's vertical scroll value every 2 lines (every line is currently too slow).  Changing the scroll value while the plane is being drawn to the screen causes a "rippling" effect.  If the plane shifts down, lines will be repeated, stretching them out.  If the plane shifts up, lines will be skipped, making the image appear more compressed.  Jon Burton's video on the [Sonic 3D Blast intro](https://www.youtube.com/watch?v=IehwV2K60r8) gave me an idea how this could be done, as that game stretches an 80-pixel image to fill the 224 lines of the screen.
 
 # Formula
-The mathematical formula used to generate these backgrounds, which I found [here](https://forum.starmen.net/forum/General/Tech/Help-with-allegro-and-c/page/1#post1131426) is:
+The mathematical formula used to generate these backgrounds, which I found [here](https://forum.starmen.net/forum/General/Tech/Help-with-allegro-and-c/page/1#post1131426), is:
 ```offset(y, t) = A * sin (F * y + S * t)```
 
 | Variable | Explanation |

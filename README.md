@@ -15,7 +15,7 @@ The effects described in the EarthBound video are:
 5. Vertical Oscillation
 6. Transparency
 
-Before starting this project, I knew that effects 1-4 were possible on the Genesis, and 6 was impossible.  The original project was a Vertical Oscillation proof-of-concept, and later expanded to include the other effects.
+Before starting this project, I knew that effects 1-4 were possible on the Genesis.  The original project was a Vertical Oscillation proof-of-concept, and later expanded to include the other effects (except Transparency).
 
 # Implementation
 I recommend watching the [EarthBound Battle Backgrounds video](https://youtu.be/zjQik7uwLIQ?t=143) for a good visual explanation of how the oscillation effects work.  On the SNES, Horizontal Direct Memory Access (HDMA) is used to change the background's horizontal and vertical scroll positions as the background is being drawn to the screen.  Since the Genesis does not support HDMA, other mechanisms must be used to achieve the same effect.

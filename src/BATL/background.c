@@ -11,8 +11,8 @@
 #include "background.h"
 
 #define PAL PAL0
-#define PLANE_ADDR VDP_PLAN_B
-#define PLANE PLAN_B
+#define PLANE_ADDR VDP_BG_B
+#define PLANE BG_B
 #define TILE_START_IDX 1
 
 // Backgrounds must be 256x256.
@@ -20,7 +20,7 @@
 #define BACKGROUND_HEIGHT_TILE 32
 
 // SGDK Map structure; w and h are width and height in tiles.
-static Map sgdkMap;
+static TileMap sgdkMap;
 
 static u16 frame_counter;
 static volatile u16 scanline_counter;
@@ -93,8 +93,8 @@ void background_update()
 {
     CAM_px += scrolling_data->horizontal_velocity;
     CAM_py += scrolling_data->vertical_velocity;
-    
-    u16 sine_table_idx = initial_sine_table_idx;    
+
+    u16 sine_table_idx = initial_sine_table_idx;
     initial_sine_table_idx += distortion_data->time_shifting;
 
     u16 i = UTIL_SCREEN_PIXEL_HEIGHT;
@@ -133,7 +133,7 @@ void background_update()
         {
             u16 i;
             u16 temp_color;
-            
+
             temp_color = palette[background_data->palette_cycle_max_idx];
             for (i = background_data->palette_cycle_max_idx; i != background_data->palette_cycle_min_idx; i--)
             {
@@ -152,13 +152,13 @@ void background_update_VDP()
     // Foreground
     if (distortion_data->oscillation_mode == BATL_OSCILLATION_VERTICAL)
     {
-        VDP_setHorizontalScroll(PLAN_B, -CAM_px);
-        VDP_setVerticalScroll(PLAN_B, offsets[0]);
+        VDP_setHorizontalScroll(BG_B, -CAM_px);
+        VDP_setVerticalScroll(BG_B, offsets[0]);
     }
     else
     {
-        VDP_setHorizontalScroll(PLAN_B, -(offsets[0]));
-        VDP_setVerticalScroll(PLAN_B, CAM_py);
+        VDP_setHorizontalScroll(BG_B, -(offsets[0]));
+        VDP_setVerticalScroll(BG_B, CAM_py);
     }
 
     if (palette_cycle_delay_frames_left == 0)
@@ -202,7 +202,7 @@ static void redraw_background()
         }
 
         // Since we're redrawing the whole screen, do the DMA immediately instead of queuing it up.
-        DMA_doDma(DMA_VRAM, (u32) col_buffer, PLANE_ADDR + (((current_col) & UTIL_VDP_PLANE_TILE_WIDTH_MINUS_ONE) << 1), UTIL_VDP_PLANE_TILE_HEIGHT, UTIL_VDP_PLANE_TILE_WIDTH_TIMES_TWO);
+        DMA_doDma(DMA_VRAM, (void*) col_buffer, PLANE_ADDR + (((current_col) & UTIL_VDP_PLANE_TILE_WIDTH_MINUS_ONE) << 1), UTIL_VDP_PLANE_TILE_HEIGHT, UTIL_VDP_PLANE_TILE_WIDTH_TIMES_TWO);
     }
     while (current_col != 0);
 }
@@ -210,5 +210,5 @@ static void redraw_background()
 static void hint()
 {
     scanline_counter++;
-    VDP_setVerticalScroll(PLAN_B, offsets[scanline_counter]);
+    VDP_setVerticalScroll(BG_B, offsets[scanline_counter]);
 }

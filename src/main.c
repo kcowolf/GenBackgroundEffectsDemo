@@ -33,7 +33,7 @@ int main()
                 {
                     background_idx = 0;
                 }
-                
+
                 background_change_delay = 20;
                 set_background(background_idx);
             }
@@ -61,7 +61,7 @@ int main()
         BATL_update();
 
         // Wait for vsync
-        VDP_waitVSync();
+        SYS_doVBlankProcess();
 
         // Map
         BATL_update_VDP();
